@@ -71,6 +71,7 @@ namespace OpenZWave
 		friend class MultiChannelAssociation;
 		friend class NodeNaming;
 		friend class NoOperation;
+		friend class CentralScene;
 		friend class SceneActivation;
 		friend class WakeUp;
 		friend class Security;

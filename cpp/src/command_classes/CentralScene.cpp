@@ -31,6 +31,7 @@
 #include "Msg.h"
 #include "Node.h"
 #include "Driver.h"
+#include "Notification.h"
 #include "platform/Log.h"
 #include "value_classes/ValueInt.h"
 
@@ -179,6 +180,12 @@ bool CentralScene::HandleMsg
 			value->Release();
 		} else {
 			Log::Write( LogLevel_Warning, GetNodeId(), "No ValueID created for Scene %d", _data[3]);
+
+			Notification* notification = new Notification( Notification::Type_SceneEvent );
+                        notification->SetHomeAndNodeIds( GetHomeId(), GetNodeId() );
+                        notification->SetSceneId( _data[3] * 10 + when );
+                        GetDriver()->QueueNotification( notification );
+
 			return false;
 		}
 		return true;
